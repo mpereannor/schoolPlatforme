@@ -1,0 +1,132 @@
+import React from 'react';
+import { Field, Form, withFormik } from 'formik';
+import * as Yup from 'yup';
+
+function Login( { 
+    values, 
+    errors, 
+    touched, 
+}) { 
+    return ( 
+        <div className='form-column'>
+            <h1>Login</h1>
+            <Form>
+                <div>
+                    <Field type='text' name='username' placeholder='Username' autoComplete='username'>
+                    </Field>
+                </div>
+                <div>
+                    {touched.email && errors.email && <p>{errors.email}</p>}
+                    <Field type='email' name='email' placeholder='Email' 
+                    autoComplete='email'>
+                    </Field>
+                </div>
+                <div>
+                    {touched.password && errors.password && <p>{errors.password}</p>} 
+                    <Field type='password' name='password' placeholder='Password' required='required' autoComplete='current-password'></Field>
+                </div>
+                <button
+                 className='button'
+                 type='submit'>
+                Login
+                </button>
+            </Form>
+        </div>
+    )
+}
+
+const FormikLogin = withFormik({ 
+    mapPropsToValues({ username, email, password }) {
+        return { 
+            username: username || '',
+            email: email || '',
+            password: password || ''
+        }        
+    }, 
+    validationSchema: Yup.object().shape({ 
+        email: Yup.string().email('email is not valid').required(),
+        password: Yup.string().min(8, 'password must exceed 8 characters').required()
+    }),
+    handleSubmit(values, { props, resetForm}) {
+        //needs explaining
+        props.login(values);
+        resetForm(); 
+    }
+})(Login);
+
+export default FormikLogin;
+
+// export default connect( )
+ 
+/*
+import React from "react";
+import ReactDOM from "react-dom";
+import { Field, Form, withFormik } from 'formik';
+import * as Yup from 'yup';
+import "./styles.css";
+
+function App({
+  values, 
+  errors, 
+  touched,
+  isSubmitting
+}) {
+  return (
+    <Form className="appForm">
+    <div>
+      { touched.email && errors.email && <p>{errors.email}</p>}
+     <Field type='email' name='email' placeholder='Email'/> 
+    </div>
+    <div>
+      { touched.password && errors.password &&
+         <p>{errors.password}</p>}
+      <Field type='password' name='password'
+      placeholder='Password'/>
+    </div>
+     <label>
+      <Field type='checkbox' name='newsletter'
+      checked={values.newsletter}/>  
+      Join Our Newsletter
+     </label>
+     <Field component='select' name='plan'>
+       <option value='free'>Free</option>
+       <option value='premium'>Premium</option>
+     </Field>
+     <button disabled={isSubmitting}>Submit</button>
+    </Form>
+  );
+}
+
+const FormikApp = withFormik({ 
+  mapPropsToValues({ email, password, newsletter, plan }) { 
+    return {
+      email: email || '',
+      password: password || '',
+      newsletter: newsletter || false,
+      plan: plan || 'free'
+    }
+  }, 
+  validationSchema: Yup.object().shape({
+    email: Yup.string().email('votre adresse pas valide')
+    .required(),
+    password: Yup.string().min(9, 'mot de passe doit depasser 9 characteres')
+    .required() 
+  }),
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  //this is where you make an api request
+  setTimeout(() => { 
+    if(values.email === 'loki@loki.com') {
+      setErrors({ 
+        email: 'on a deja recu cet adresse dans notre base de donneees'
+      })
+    } else { 
+      resetForm()
+    }
+    setSubmitting(false)
+  }, 2000)
+  console.log(values)
+  }
+})(App)
+const rootElement = document.getElementById("root");
+ReactDOM.render(<FormikApp />, rootElement);
+*/
