@@ -1,6 +1,12 @@
 import React from 'react';
-import { Field, Form, withFormik } from 'formik';
+import { Icon, Input, Form, Button, Typography } from 'antd';
+import { Field, withFormik } from 'formik';
 import * as Yup from 'yup';
+import 'antd/dist/antd.css';
+
+const FormItem = Form.Item;
+const { Title } = Typography;
+
 
 function Login( { 
     values, 
@@ -9,29 +15,43 @@ function Login( {
 }) { 
     return ( 
         <div className='form-column'>
-            <h1>Login</h1>
-            <Form>
+            <Title level={1}>Log In</Title>
+            <form>
+              <FormItem>
                 <div>
                 {touched.username && errors.username && <p>{errors.username}</p>}
-                    <Field type='text' name='username' placeholder='Username' autoComplete='username'>
-                    </Field>
+                <Icon type='user'/>
+                 <Field type='text' name='username' placeholder='Username' autoComplete='username'>
+                </Field>
                 </div>
+              </FormItem>
+              <FormItem>
                 <div>
                     {touched.email && errors.email && <p>{errors.email}</p>}
+                    <Icon type='mail'/>
+
                     <Field type='email' name='email' placeholder='Email' 
                     autoComplete='email'>
                     </Field>
                 </div>
+              </FormItem>
+              <FormItem>  
                 <div>
                     {touched.password && errors.password && <p>{errors.password}</p>} 
+                    <Icon type='lock'/>
+                  
                     <Field type='password' name='password' placeholder='Password' autoComplete='current-password'></Field>
                 </div>
-                <button
-                 className='button'
-                 type='submit'>
-                Login
-                </button>
-            </Form>
+              </FormItem>
+              <FormItem>
+                <Button
+                   className='button'
+                  type='primary'
+                  htmlType='submit'>
+                  Login
+                </Button>
+              </FormItem>
+            </form>
         </div>
     )
 }
