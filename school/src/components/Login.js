@@ -12,6 +12,7 @@ function Login( {
             <h1>Login</h1>
             <Form>
                 <div>
+                {touched.username && errors.username && <p>{errors.username}</p>}
                     <Field type='text' name='username' placeholder='Username' autoComplete='username'>
                     </Field>
                 </div>
@@ -23,7 +24,7 @@ function Login( {
                 </div>
                 <div>
                     {touched.password && errors.password && <p>{errors.password}</p>} 
-                    <Field type='password' name='password' placeholder='Password' required='required' autoComplete='current-password'></Field>
+                    <Field type='password' name='password' placeholder='Password' autoComplete='current-password'></Field>
                 </div>
                 <button
                  className='button'
@@ -47,7 +48,7 @@ const FormikLogin = withFormik({
         email: Yup.string().email('email is not valid').required(),
         password: Yup.string().min(8, 'password must exceed 8 characters').required()
     }),
-    handleSubmit(values, { props, resetForm}) {
+    handleSubmit(values, { props, resetForm }) {
         //needs explaining
         props.login(values);
         resetForm(); 
