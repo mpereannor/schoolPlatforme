@@ -1,7 +1,7 @@
 import React from 'react';
-import { Icon, Input, Form, Button, Typography } from 'antd';
 import { Field, withFormik } from 'formik';
 import * as Yup from 'yup';
+import { Icon, Input, Form, Button, Typography } from 'antd';
 import 'antd/dist/antd.css';
 
 const FormItem = Form.Item;
@@ -9,14 +9,13 @@ const { Title } = Typography;
 
 
 function Login( { 
-    values, 
     errors, 
     touched, 
 }) { 
     return ( 
         <div className='form-column'>
-            <Title level={1}>Log In</Title>
-            <form>
+            <Title level={3}>Log In</Title>
+            <Form>
               <FormItem>
                 <div>
                 {touched.username && errors.username && <p>{errors.username}</p>}
@@ -29,7 +28,6 @@ function Login( {
                 <div>
                     {touched.email && errors.email && <p>{errors.email}</p>}
                     <Icon type='mail'/>
-
                     <Field type='email' name='email' placeholder='Email' 
                     autoComplete='email'>
                     </Field>
@@ -50,8 +48,9 @@ function Login( {
                   htmlType='submit'>
                   Login
                 </Button>
+                Don't Have an Account? <a href=''>Register Now!</a>
               </FormItem>
-            </form>
+            </Form>
         </div>
     )
 }
