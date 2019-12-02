@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import FormikLogin from './components/Login';
 import FormikRegister from './components/Register';
 import Homepage from './components/Homepage';
+import Dashboard from './components/Dashboard';
 import Game from './components/Game';
 import { Typography, Layout } from 'antd';
 
@@ -22,6 +23,7 @@ function App() {
           <Content>
             <Route exact path='/' component={Homepage}/>
             <Route path='/game' component={Game}/>
+            <Route path='/dashboard' component={Dashboard}/>
           </Content>
         </Layout>
       </Layout>
