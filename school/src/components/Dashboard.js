@@ -6,14 +6,8 @@ const { Header, Footer , Sider, Content, Row, Col } = Layout;
 const { SubMenu } = Menu;
 
 const Dashboard = props => { 
-
 return ( 
-
   <Layout>
-    <Header className="header">
-      <div className="logo" />
-  
-    </Header>
     <Layout>
       <Sider width={200} style={{ background: '#fff' }}>
         <Menu

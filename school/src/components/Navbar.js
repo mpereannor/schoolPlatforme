@@ -16,11 +16,9 @@ function Navbar () {
                     <div className='logo'>
                         <Menu
                         mode='horizontal'
-                        style={{lineHeight: '64px',
-                        fontSize: '20px'
-                    }}
+                        style={{fontSize: '20px'}}
                     defaultSelectedKeys={['1']}
-                    >
+                        >
                         <Menu.Item key='1'>
                             <NavLink to='/'>
                                 Homepage
@@ -32,7 +30,9 @@ function Navbar () {
                             </NavLink>
                         </Menu.Item>
                         <Menu.Item>
-                            <NavLink to='/dashboard'>DashBoard</NavLink>
+                            <NavLink to='/dashboard'>
+                                DashBoard
+                            </NavLink>
                         </Menu.Item>
                         {/* <Menu.Item>
                             <NavLink onClick={onLogout} to='/login'>LogOut</NavLink>
